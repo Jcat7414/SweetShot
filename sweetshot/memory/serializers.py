@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from .models import Memory
 
 class MemorySerializer(serializers.Serializer):
     id = serializers.ReadOnlyField()
@@ -10,3 +11,6 @@ class MemorySerializer(serializers.Serializer):
     date_amended = serializers.DateField()
     is_current = serializers.BooleanField()
     owner = serializers.CharField(max_length=100)
+
+    def create(self, validated_data):
+        return Memory.objects.create(**validated_data)
