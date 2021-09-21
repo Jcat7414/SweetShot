@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 class Memory(models.Model):
@@ -8,4 +9,8 @@ class Memory(models.Model):
     memory_details = models.TextField(max_length=5000)
     date_amended = models.DateField()
     is_current = models.BooleanField()
-    owner = models.CharField(max_length=100)
+    owner = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name='owner_memory'
+    )
