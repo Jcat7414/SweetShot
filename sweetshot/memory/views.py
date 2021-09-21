@@ -24,7 +24,7 @@ class MemoryList(APIView):
             )
         return Response(
             serializer.errors,
-            status=status.HTTP_404_NOT_FOUND
+            status=status.HTTP_400_BAD_REQUEST
         )
 
 class MemoryDetail(APIView):
@@ -33,4 +33,12 @@ class MemoryDetail(APIView):
         try:
             return Memory.objects.get(pk=pk)
         except Memory.DoesNotExist:
-            raise 404
+            raise Http404
+
+    def get(self, request, pk):
+        memory = self.get_object(pk)
+        serializer = MemorySerializer(memory)
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
