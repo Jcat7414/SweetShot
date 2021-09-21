@@ -10,7 +10,7 @@ class MemorySerializer(serializers.Serializer):
     memory_details = serializers.CharField(max_length=5000)
     date_amended = serializers.DateField()
     is_current = serializers.BooleanField()
-    owner = serializers.CharField(max_length=100)
+    owner = serializers.ReadOnlyField(source='owner.id')
 
     def create(self, validated_data):
         return Memory.objects.create(**validated_data)
