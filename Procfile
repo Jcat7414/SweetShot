@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath sweetshot sweetshow.wsgi --log-file -
