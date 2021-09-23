@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath sweetshot sweetshow.wsgi --log-file -
+web: gunicorn --pythonpath sweetshot sweetshot.wsgi --log-file -
