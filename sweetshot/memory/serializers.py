@@ -23,7 +23,7 @@ class MemoryDetailSerializer(MemorySerializer):
         instance.course = validated_data.get('course', instance.course)
         instance.shot_date = validated_data.get('shot_date', instance.shot_date)
         instance.weather = validated_data.get('weather', instance.weather)
-        instance.memory_details = validated_data.get('memory_details', validated_data.memory_details)
+        instance.memory_details = validated_data.get('memory_details', instance.memory_details)
         instance.date_amended = validated_data.get('date_amended', instance.date_amended)
         instance.is_current = validated_data.get('is_current', instance.is_current)
         instance.save()
