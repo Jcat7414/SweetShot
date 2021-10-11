@@ -1,16 +1,18 @@
 from rest_framework import serializers
 from .models import Memory
+from django.utils import timezone
+
 
 class MemorySerializer(serializers.Serializer):
     id = serializers.ReadOnlyField()
-    date_created = serializers.DateField()
+    date_created = serializers.DateField(default=timezone.now)
     club = serializers.CharField(max_length=100)
     course = serializers.CharField(max_length=5000)
     shot_date = serializers.DateField()
     weather = serializers.CharField(max_length=500)
     memory_details = serializers.CharField(max_length=5000)
-    date_amended = serializers.DateField()
-    is_current = serializers.BooleanField()
+    date_amended = serializers.DateField(default=timezone.now)
+    is_current = serializers.BooleanField(default=True)
     owner = serializers.ReadOnlyField(source='owner.id')
 
     def create(self, validated_data):

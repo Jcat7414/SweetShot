@@ -7,8 +7,8 @@ class CustomUserSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=200)
     email = serializers.CharField(max_length=200)
     password = serializers.CharField(write_only=True)
-    terms = serializers.BooleanField(default=True, write_only=True)
-    created_on = serializers.DateField(default=timezone.now, write_only=True)
+    terms = serializers.BooleanField(default=True)
+    created_on = serializers.DateField(default=timezone.now)
 
     def create(self, validated_data):
         return CustomUser.objects.create_user(**validated_data)
